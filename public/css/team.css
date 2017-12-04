@@ -1,0 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Catamaran|Montserrat);h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Catamaran", sans-serif;
+}
+
+span.icon {
+  background-color: #0772b9;
+  padding: 5px;
+  border-radius: 50%;
+  color: #fff;
+  margin-right: 5px;
+}
+

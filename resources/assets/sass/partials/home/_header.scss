@@ -1,0 +1,14 @@
+.jumbotron{
+    background-image: linear-gradient(rgba($dark,0.4),rgba($light,0.4)), url(https://source.unsplash.com/dADTfezyAWc);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 500px;
+    h1{
+        color: $white;
+        margin-top: 50px;
+    }
+    p{
+        color: $white;
+    }
+}

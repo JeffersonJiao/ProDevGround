@@ -1,0 +1,35 @@
+@import url(https://fonts.googleapis.com/css?family=Catamaran|Montserrat);h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Catamaran", sans-serif;
+}
+
+span.icon {
+  background-color: #0772b9;
+  padding: 5px;
+  border-radius: 50%;
+  color: #fff;
+  margin-right: 5px;
+}
+
+.jumbotron {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(7, 114, 185, 0.4)), to(rgba(111, 203, 220, 0.4))), url(https://source.unsplash.com/dADTfezyAWc);
+  background-image: linear-gradient(rgba(7, 114, 185, 0.4), rgba(111, 203, 220, 0.4)), url(https://source.unsplash.com/dADTfezyAWc);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 500px;
+}
+
+.jumbotron h1 {
+  color: #fff;
+  margin-top: 50px;
+}
+
+.jumbotron p {
+  color: #fff;
+}
+
