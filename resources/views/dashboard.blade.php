@@ -15,7 +15,7 @@
                     @endif
                     <h3>Request Lists</h3>
 
-                    @if(count($projects)>0)
+                    @if(count($requests)>0)
                     <table class="table table-striped">
                         <tr>
                             <th>Name</th>
@@ -38,7 +38,7 @@
                             </tr>
                         @endforeach
                     </table>
-                    {{$projects->links()}}
+                    {{$requests->appends(['projects' => $projects->currentPage()])->links()}}  
                     @else
                         <p>You have no projects</p>
                     @endif
@@ -80,7 +80,7 @@
                             </tr>
                         @endforeach
                     </table>
-                    {{$projects->links()}}
+                    {{$projects->appends(['requests' => $requests->currentPage()])->links()}}  
                     @else
                         <p>You have no projects</p>
                     @endif

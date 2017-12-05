@@ -31,10 +31,10 @@ class DashboardController extends Controller
                     ->join('projects','projects.id', '=','join_requests.project_id')
                     ->where('creator_id','=', $user_id)
                     ->select('join_requests.id','users.name','projects.project_title')
-                    ->get();
+                    ->paginate(1, ['*'], 'requests');
         
         // $user = User::find($user_id);
-        $projects = DB::table('projects')->where('user_id', '=', $user_id)->paginate(10);
+        $projects = DB::table('projects')->where('user_id', '=', $user_id)->paginate(1, ['*'], 'projects');;
         // return $requests;
         return view('dashboard')->with('projects',$projects)->with('requests',$requests);
 
