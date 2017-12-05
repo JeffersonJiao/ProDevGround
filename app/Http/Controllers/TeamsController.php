@@ -39,6 +39,7 @@ class TeamsController extends Controller
      */
     public function create($id)
     {
+
         $project = Project::find($id);
         return view('teams.create')->with('project',$project);
     }
@@ -52,6 +53,7 @@ class TeamsController extends Controller
     public function store(Request $request)
     {
         $JoinRequest = new JoinRequest;
+        
         $this->validate($request,[
             'coverletter' => 'required'
         ]);
@@ -66,8 +68,9 @@ class TeamsController extends Controller
         $JoinRequest->creator_id =  $creator_id;  
         $JoinRequest->project_id = $project_id;
         $JoinRequest->requester_id = $requester_id;
+        $JoinRequest->coverletter = $cover_letter;
         $JoinRequest->save(); 
-        return 'success';
+        return redirect('/projects')->with('success','Request has been sent');
     }
 
     /**
@@ -78,7 +81,7 @@ class TeamsController extends Controller
      */
     public function show($id)
     {
-        
+        return "hello";
     }
 
     /**

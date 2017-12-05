@@ -25,7 +25,7 @@
                         </tr>
                         @foreach($requests as $request)
                             <tr>
-                                <td>{{$request->name}}</td>
+                                <td> <a href="/teams/{!!$request->id!!}">{{$request->name}}</a></td>
                                 <td>{{$request->project_title}}</td>
                                 <td>
                                     <a href="">Accept</a>

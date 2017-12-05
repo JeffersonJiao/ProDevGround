@@ -18,6 +18,7 @@ class CreateJoinRequestsTable extends Migration
             $table->integer('creator_id');
             $table->integer('project_id');
             $table->integer('requester_id');
+            $table->mediumText('coverletter');
             $table->timestamps();
         });
     }
