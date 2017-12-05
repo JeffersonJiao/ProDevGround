@@ -22,7 +22,7 @@
             @if(count($joinrequest) > 0)
                 <p>Your request has been sent. Please wait for the project creator to accept</p>
             @else
-                <a href="/teams/create/{{$project->id}}" class="btn btn-default">Join</a>
+                <a href="/request/create/{{$project->id}}" class="btn btn-default">Join</a>
             @endif
         @endif
 

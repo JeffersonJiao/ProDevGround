@@ -22,10 +22,10 @@ Auth::routes();
 Route::get('/dashboard', 'DashboardController@index');
 
 
-Route::resource('teams','TeamsController');
-Route::get('teams/create/{id}', [
-    'as' => 'teams.create',
-    'uses' => 'TeamsController@create'
+Route::resource('request','RequestController');
+Route::get('request/create/{id}', [
+    'as' => 'request.create',
+    'uses' => 'RequestController@create'
 ]);
 
-Route::resource('teams', 'TeamsController', ['except' => 'create']);
+Route::resource('teams', 'RequestController', ['except' => 'create']);

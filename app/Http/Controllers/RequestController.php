@@ -8,7 +8,7 @@ use App\Project;
 use App\Team;
 use App\JoinRequest;
 use DB;
-class TeamsController extends Controller
+class RequestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,7 +41,7 @@ class TeamsController extends Controller
     {
 
         $project = Project::find($id);
-        return view('teams.create')->with('project',$project);
+        return view('request.create')->with('project',$project);
     }
 
     /**

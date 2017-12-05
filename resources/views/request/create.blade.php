@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <h1>Join Request</h1>
-        {!! Form::open(['action' => 'TeamsController@store','method'=>'POST']) !!}
+        {!! Form::open(['action' => 'RequestController@store','method'=>'POST']) !!}
             <div class="form-group">
                 {{Form::label('title','Project title')}}
                 {{Form::text('title','',['class' => 'form-control','placeholder' => $project->project_title , 'disabled' => 'disabled' ])}}
