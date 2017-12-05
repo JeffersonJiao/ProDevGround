@@ -20,4 +20,12 @@ Route::resource('projects','ProjectsController');
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
+
+
 Route::resource('teams','TeamsController');
+Route::get('teams/create/{id}', [
+    'as' => 'teams.create',
+    'uses' => 'TeamsController@create'
+]);
+
+Route::resource('teams', 'TeamsController', ['except' => 'create']);

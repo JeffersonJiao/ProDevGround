@@ -25,9 +25,18 @@ class DashboardController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
+
+        $requests = DB::table('join_requests')
+                    ->join('users','users.id', '=','join_requests.requester_id')
+                    ->join('projects','projects.id', '=','join_requests.project_id')
+                    ->where('creator_id','=', $user_id)
+                    ->select('join_requests.id','users.name','projects.project_title')
+                    ->get();
+        
         // $user = User::find($user_id);
         $projects = DB::table('projects')->where('user_id', '=', $user_id)->paginate(10);
-        return view('dashboard')->with('projects',$projects);
+        // return $requests;
+        return view('dashboard')->with('projects',$projects)->with('requests',$requests);
 
     }
     

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Project;
 use App\Team;
+use App\JoinRequest;
 use DB;
 class ProjectsController extends Controller
 {
@@ -74,7 +75,11 @@ class ProjectsController extends Controller
     public function show($id)
     {
         $project =  Project::find($id);
-        return view('projects.show')->with('project',$project);
+        $user_id = auth()->user()->id;
+        $joinrequest = JoinRequest::where('project_id','=', $id )
+                        ->where('requester_id','=',$user_id)
+                        ->get();
+        return view('projects.show')->with('project',$project)->with('joinrequest',$joinrequest);
     }
 
     /**

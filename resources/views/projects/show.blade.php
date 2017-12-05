@@ -19,9 +19,11 @@
                 {{Form::submit('Delete',['class'=> 'btn btn-danger'])}}
             {!!Form::close()!!}
         @else
-            {!!Form::open(['action'=>['TeamsController@store',$project->id],'method' => 'POST', 'class'=>'pull-right'])!!}
-                {{Form::submit('Join',['class'=> 'btn btn-default'])}}
-            {!!Form::close()!!}
+            @if(count($joinrequest) > 0)
+                <p>Your request has been sent. Please wait for the project creator to accept</p>
+            @else
+                <a href="/teams/create/{{$project->id}}" class="btn btn-default">Join</a>
+            @endif
         @endif
 
     @endif

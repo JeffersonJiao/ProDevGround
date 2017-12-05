@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Project;
 use App\Team;
+use App\JoinRequest;
 use DB;
 class TeamsController extends Controller
 {
@@ -14,6 +15,12 @@ class TeamsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth',['except' => ['index','show']]);
+    }
+
+
     public function index()
     {
        $user_id = auth()->user()->id;
@@ -30,9 +37,10 @@ class TeamsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        
+        $project = Project::find($id);
+        return view('teams.create')->with('project',$project);
     }
 
     /**
@@ -43,7 +51,23 @@ class TeamsController extends Controller
      */
     public function store(Request $request)
     {
-        return 123;
+        $JoinRequest = new JoinRequest;
+        $this->validate($request,[
+            'coverletter' => 'required'
+        ]);
+        $requester_id = auth()->user()->id;
+        $cover_letter =  $request->input('coverletter');
+        $project_id = $request->input('id');
+        $data = DB::table('projects')
+                    ->select('user_id')
+                    ->where('id', '=', $project_id)
+                    ->first();   
+        $creator_id = $data->user_id;    
+        $JoinRequest->creator_id =  $creator_id;  
+        $JoinRequest->project_id = $project_id;
+        $JoinRequest->requester_id = $requester_id;
+        $JoinRequest->save(); 
+        return 'success';
     }
 
     /**
@@ -54,7 +78,7 @@ class TeamsController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
