@@ -17,7 +17,7 @@ class RequestController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth',['except' => ['index','show']]);
+        $this->middleware('auth',['except' => []]);
     }
 
 
@@ -81,7 +81,14 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        return "hello";
+        $request = DB::table('join_requests')
+                    ->select('join_requests.*','users.name','projects.project_title')
+                    ->join('users','join_requests.requester_id','=','users.id')
+                    ->join('projects','join_requests.project_id','=','projects.id')
+                    ->where('join_requests.id',$id)
+                    ->first();
+                    
+        return view('request.show')->with('request',$request);
     }
 
     /**
@@ -115,6 +122,8 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $request = JoinRequest::find($id);
+        $request->delete();
+        return redirect('/dashboard')->with('success','Request has been removed');
     }
 }

@@ -4,17 +4,16 @@
 @endsection
 @section('content')
     <div class="container">
-        <h1>{{$project->project_title}}</h1>
+        <h1>{{$request->project_title}}</h1>
     <div>
-        {!!$project->project_description!!}
+        {!!$request->coverletter!!}
     </div>
     <hr>
-    <small>Written on: {{$project->created_at}} </small>
-
-    <hr>
-    @if(!Auth::guest())
-        
-
-    @endif
+    {!!Form::open(['action'=>['TeamsController@store',$request->id],'method' => 'POST', 'class'=>'pull-left'])!!}
+        {{Form::submit('Accept',['class'=> 'btn btn-default'])}}
+    {!!Form::close()!!}
+    {!!Form::open(['action'=>['RequestController@destroy',$request->id],'method' => 'DELETE', 'class'=>'pull-right'])!!}
+        {{Form::submit('Deny',['class'=> 'btn btn-danger'])}}
+    {!!Form::close()!!}
     </div>
 @endsection

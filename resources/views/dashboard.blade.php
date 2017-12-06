@@ -25,14 +25,16 @@
                         </tr>
                         @foreach($requests as $request)
                             <tr>
-                                <td> <a href="/teams/{!!$request->id!!}">{{$request->name}}</a></td>
+                                <td> <a href="/request/{!!$request->id!!}">{{$request->name}}</a></td>
                                 <td>{{$request->project_title}}</td>
                                 <td>
                                     <a href="">Accept</a>
                                    
                                 </td>
                                 <td>
-                                    <a href="">Deny</a>
+                                {!!Form::open(['action'=>['RequestController@destroy',$request->id],'method' => 'DELETE'])!!}
+                                    {{Form::submit('Deny',['class'=> 'btn btn-danger'])}}
+                                {!!Form::close()!!}
                                    
                                 </td>
                             </tr>
