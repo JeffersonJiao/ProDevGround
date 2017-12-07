@@ -87,7 +87,7 @@ class RequestController extends Controller
                     ->join('projects','join_requests.project_id','=','projects.id')
                     ->where('join_requests.id',$id)
                     ->first();
-                    
+        
         return view('request.show')->with('request',$request);
     }
 

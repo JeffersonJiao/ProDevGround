@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Project;
+use App\Team;
+use App\JoinRequest;
+use DB;
 
 class TeamsController extends Controller
 {
@@ -34,8 +39,9 @@ class TeamsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      return  $request->input('joinrequest_id');
     }
+    
 
     /**
      * Display the specified resource.
