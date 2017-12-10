@@ -79,7 +79,10 @@ class ProjectsController extends Controller
         $joinrequest = JoinRequest::where('project_id','=', $id )
                         ->where('requester_id','=',$user_id)
                         ->get();
-        return view('projects.show')->with('project',$project)->with('joinrequest',$joinrequest);
+        $member_exist = Team::where('user_id',$user_id)
+                              ->where('project_id',$id)
+                              ->get();
+        return view('projects.show')->with('project',$project)->with('joinrequest',$joinrequest)->with('member_exist',$member_exist);
     }
 
     /**

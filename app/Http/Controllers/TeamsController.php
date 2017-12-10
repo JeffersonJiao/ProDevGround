@@ -18,7 +18,7 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        //
+        return view('/teams');
     }
 
     /**
@@ -39,7 +39,14 @@ class TeamsController extends Controller
      */
     public function store(Request $request)
     {
-      return  $request->input('joinrequest_id');
+      $team = new Team;
+      $team->user_id = $request->input('requester_id');
+      $team->project_id = $request->input('project_id');
+      $request_id = $request->input('joinrequest_id');
+      $request = JoinRequest::find($request_id);
+      $request->delete();
+      $team->save();
+      return redirect('/dashboard')->with('success','You have welcomed a new member');
     }
     
 

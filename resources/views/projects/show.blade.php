@@ -21,6 +21,8 @@
         @else
             @if(count($joinrequest) > 0)
                 <p>Your request has been sent. Please wait for the project creator to accept</p>
+            @elseif(count($member_exist)>0)
+                <p>You are already part of this project</p>
             @else
                 <a href="/request/create/{{$project->id}}" class="btn btn-default">Join</a>
             @endif

@@ -13,7 +13,7 @@
     {{ Form::hidden('project_id', $request->project_id) }}
     {{ Form::hidden('requester_id', $request->requester_id) }}
     {{ Form::hidden('joinrequest_id', $request->id) }}
-        {{Form::submit('Accept',['class'=> 'btn btn-default'])}}
+        {{Form::submit('Accept',['class'=> 'btn btn-primary'])}}
     {!!Form::close()!!}
     {!!Form::open(['action'=>['RequestController@destroy',$request->id],'method' => 'DELETE', 'class'=>'pull-right'])!!}
         {{Form::submit('Deny',['class'=> 'btn btn-danger'])}}

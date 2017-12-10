@@ -23,13 +23,14 @@ class RequestController extends Controller
 
     public function index()
     {
-       $user_id = auth()->user()->id;
-       $users_team = DB::table('teams')
-                    ->select('projects.id','projects.project_title')
-                    ->join('projects','projects.id', '=','teams.project_id')
-                    ->where('teams.user_id', $user_id)
-                    ->get();
-       return $users_team;
+    //    $user_id = auth()->user()->id;
+    //    $users_team = DB::table('teams')
+    //                 ->select('projects.id','projects.project_title')
+    //                 ->join('projects','projects.id', '=','teams.project_id')
+    //                 ->where('teams.user_id', $user_id)
+    //                 ->get();
+    //    return $users_team;
+          return redirect('/dashboard');
     }
 
     /**

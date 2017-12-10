@@ -28,8 +28,12 @@
                                 <td> <a href="/request/{!!$request->id!!}">{{$request->name}}</a></td>
                                 <td>{{$request->project_title}}</td>
                                 <td>
-                                    <a href="">Accept</a>
-                                   
+                                    {!!Form::open(['action'=>['TeamsController@store',$request->id],'method' => 'POST', 'class'=>'pull-left'])!!}
+                                    {{ Form::hidden('project_id', $request->project_id) }}
+                                    {{ Form::hidden('requester_id', $request->requester_id) }}
+                                    {{ Form::hidden('joinrequest_id', $request->id) }}
+                                        {{Form::submit('Accept',['class'=> 'btn btn-primary'])}}
+                                    {!!Form::close()!!}
                                 </td>
                                 <td>
                                 {!!Form::open(['action'=>['RequestController@destroy',$request->id],'method' => 'DELETE'])!!}
@@ -42,7 +46,7 @@
                     </table>
                     {{$requests->appends(['projects' => $projects->currentPage()])->links()}}  
                     @else
-                        <p>You have no projects</p>
+                        <p>You currently do not have join request for your project</p>
                     @endif
                     
                 </div>
