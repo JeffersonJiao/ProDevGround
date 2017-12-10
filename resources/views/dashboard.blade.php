@@ -65,6 +65,7 @@
                         </div>
                     @endif
                     <a href="/projects/create" class="btn btn-primary">Create Project</a>
+                    <a href="/teams" class="btn btn-primary pull-right">My Teams</a>
                     <h3>Your Created Projects</h3>
 
                     @if(count($projects)>0)

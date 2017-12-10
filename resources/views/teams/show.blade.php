@@ -7,32 +7,26 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">My Teams</div>
+                    <div class="panel-heading">Members</div>
                     <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success">
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <h1>Your Teams</h1>
-                        @if(count($teams) > 0)
+                        @if(count($members) > 0)
                             <table class="table table-striped">
                             <tr>
-                                <th>Project Title</th>
-                                <th>Project Creator</th>
-                                <th></th>
+                                <th>Name</th>
                             </tr>
-                            @foreach($teams as $team)
+                            @foreach($members as $member)
                             <tr>
-                                <td>{{$team->project_title}}</td>
-                                <td>{{$team->name}}</td>
-                                <td><a href="/teams/{{$team->project_id}}" class="btn btn-primary">View</a></td>
+                                <td>{{$member->name}}</td>
                             </tr>
                             @endforeach
                             </table>
-                            {{$teams->links()}}
                         @else
-                            <p>You are not member of any teams yet</p>
+                            <p>Members cannot find</p>
                         @endif
                     </div>
                 </div>

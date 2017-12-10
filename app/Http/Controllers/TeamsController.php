@@ -18,7 +18,14 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        return view('/teams');
+        $user_id = auth()->user()->id;
+        $teams = DB::table('teams')
+                        ->select('teams.project_id','projects.project_title','projects.user_id','users.name')
+                        ->join('projects','projects.id','=','teams.project_id')
+                        ->join('users','users.id','=','projects.user_id')
+                        ->where('teams.user_id',$user_id)
+                        ->paginate(5);
+        return view('teams.index')->with('teams',$teams);
     }
 
     /**
@@ -28,7 +35,7 @@ class TeamsController extends Controller
      */
     public function create()
     {
-        //
+        return redirect('/dashboard');
     }
 
     /**
@@ -58,7 +65,11 @@ class TeamsController extends Controller
      */
     public function show($id)
     {
-        //
+        $members = Team::where('project_id',$id)
+                        ->select('teams.*','users.name')
+                        ->join('users','users.id','=','teams.user_id')
+                        ->get();
+        return view('/teams.show')->with('members',$members);
     }
 
     /**

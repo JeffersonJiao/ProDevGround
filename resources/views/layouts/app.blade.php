@@ -16,7 +16,7 @@
 <body>
     <div id="app">
         @include('layouts.nav')
-        @yield('header');
+        @yield('header')
         @include('inc.messages')
         @yield('content')
         
