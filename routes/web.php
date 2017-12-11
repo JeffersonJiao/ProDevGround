@@ -31,3 +31,4 @@ Route::get('request/create/{id}', [
 Route::resource('request', 'RequestController', ['except' => 'create']);
 
 Route::resource('teams','TeamsController');
+

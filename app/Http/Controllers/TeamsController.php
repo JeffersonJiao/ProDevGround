@@ -105,6 +105,8 @@ class TeamsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $member = Team::find($id);
+        $member->delete();
+        return redirect('teams')->with('success','Removing a team member/Leaving the team is successful');
     }
 }
