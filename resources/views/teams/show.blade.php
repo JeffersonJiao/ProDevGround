@@ -18,10 +18,24 @@
                             <table class="table table-striped">
                             <tr>
                                 <th>Name</th>
+                                <th></th>
                             </tr>
                             @foreach($members as $member)
                             <tr>
-                                <td>{{$member->name}}</td>
+                                <td>{{$member->member_name}}</td>
+                                <td>
+                                    @if(Auth::user()->id == $member->creator_id)
+                                        @if(Auth::user()->id != $member->user_id)
+                                            {!!Form::open(['action'=>['TeamsController@destroy',$member->id],'method' => 'DELETE', 'class'=>'pull-right'])!!}
+                                                {{Form::submit('Remove',['class'=> 'btn btn-danger'])}}
+                                            {!!Form::close()!!}
+                                        @endif
+                                    @elseif(Auth::user()->id == $member->user_id &&  Auth::user()->id != $member->creator_id) 
+                                            {!!Form::open(['action'=>['TeamsController@destroy',$member->id],'method' => 'DELETE', 'class'=>'pull-right'])!!}
+                                                {{Form::submit('Leave',['class'=> 'btn btn-danger'])}}
+                                            {!!Form::close()!!}
+                                    @endif
+                                </td>
                             </tr>
                             @endforeach
                             </table>

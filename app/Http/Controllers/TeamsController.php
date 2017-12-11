@@ -65,9 +65,11 @@ class TeamsController extends Controller
      */
     public function show($id)
     {
-        $members = Team::where('project_id',$id)
-                        ->select('teams.*','users.name')
+        $members = DB::table('teams')
+                        ->join('projects','teams.project_id','=','projects.id')
                         ->join('users','users.id','=','teams.user_id')
+                        ->select('teams.*','projects.user_id as creator_id','users.name as member_name')
+                        ->where('teams.project_id',$id)
                         ->get();
         return view('/teams.show')->with('members',$members);
     }
