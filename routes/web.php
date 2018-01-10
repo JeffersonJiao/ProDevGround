@@ -32,3 +32,5 @@ Route::resource('request', 'RequestController', ['except' => 'create']);
 
 Route::resource('teams','TeamsController');
 
+Route::resource('files','FilesController');
+

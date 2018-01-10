@@ -7,6 +7,25 @@ h6 {
   font-family: "Catamaran", sans-serif;
 }
 
+#showMember {
+  line-height: 1rem;
+}
+
+#membersTable {
+  display: none;
+}
+
+.show {
+  display: inline-block;
+  width: 100%;
+}
+
+/*Tab CSS */
+
+.tab-pane {
+  padding: 15px;
+}
+
 span.icon {
   background-color: #0772b9;
   padding: 5px;

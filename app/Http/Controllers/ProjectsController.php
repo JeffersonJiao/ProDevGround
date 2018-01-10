@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Project;
 use App\Team;
@@ -75,14 +75,19 @@ class ProjectsController extends Controller
     public function show($id)
     {
         $project =  Project::find($id);
-        $user_id = auth()->user()->id;
-        $joinrequest = JoinRequest::where('project_id','=', $id )
-                        ->where('requester_id','=',$user_id)
-                        ->get();
-        $member_exist = Team::where('user_id',$user_id)
-                              ->where('project_id',$id)
-                              ->get();
-        return view('projects.show')->with('project',$project)->with('joinrequest',$joinrequest)->with('member_exist',$member_exist);
+        if(Auth::user()){
+            $user_id = auth()->user()->id;
+            $joinrequest = JoinRequest::where('project_id','=', $id )
+                            ->where('requester_id','=',$user_id)
+                            ->get();
+            $member_exist = Team::where('user_id',$user_id)
+                                  ->where('project_id',$id)
+                                  ->get();
+            return view('projects.show')->with('project',$project)->with('joinrequest',$joinrequest)->with('member_exist',$member_exist);    
+        }
+        else{
+            return view('projects.show')->with('project',$project);
+        }
     }
 
     /**

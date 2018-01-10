@@ -1,3 +1,19 @@
 h1,h2,h3,h4,h5,h6{
     font-family: $ff-h;
 }
+
+#showMember{
+    line-height: 1rem;
+}
+#membersTable{
+    display: none;
+}
+.show{
+    display: inline-block;
+    width: 100%;
+}
+
+/*Tab CSS */
+.tab-pane{
+    padding: 15px;
+}

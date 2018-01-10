@@ -7,6 +7,7 @@ use App\User;
 use App\Project;
 use App\Team;
 use App\JoinRequest;
+use App\File;
 use DB;
 
 class TeamsController extends Controller
@@ -65,13 +66,26 @@ class TeamsController extends Controller
      */
     public function show($id)
     {
-        $members = DB::table('teams')
-                        ->join('projects','teams.project_id','=','projects.id')
-                        ->join('users','users.id','=','teams.user_id')
-                        ->select('teams.*','projects.user_id as creator_id','users.name as member_name')
-                        ->where('teams.project_id',$id)
-                        ->get();
-        return view('/teams.show')->with('members',$members);
+        $find = DB::table('teams')
+                ->where('project_id','=',$id)
+                ->where('user_id','=',auth()->user()->id)->get();
+        $exist = count($find);
+        if($exist>0){
+            $members = DB::table('teams')
+            ->join('projects','teams.project_id','=','projects.id')
+            ->join('users','users.id','=','teams.user_id')
+            ->select('teams.*','projects.user_id as creator_id','users.name as member_name')
+            ->where('teams.project_id',$id)
+            ->get();
+            $project = Project::find($id);
+            $files = DB::table('files')
+                    ->where('project_id','=',$id)->get();
+            return view('/teams.show')->with('members',$members)->with('project',$project)->with('files',$files);
+        }
+        else
+            {
+                return redirect('dashboard');
+            }
     }
 
     /**
