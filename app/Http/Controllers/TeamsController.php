@@ -79,7 +79,9 @@ class TeamsController extends Controller
             ->get();
             $project = Project::find($id);
             $files = DB::table('files')
-                    ->where('project_id','=',$id)->get();
+                    ->join('users','users.id','=','files.uploader_id')
+                    ->select('files.*','users.name as uploader_name')
+                    ->where('files.project_id','=',$id)->orderBy('created_at','desc')->paginate(10);
             return view('/teams.show')->with('members',$members)->with('project',$project)->with('files',$files);
         }
         else

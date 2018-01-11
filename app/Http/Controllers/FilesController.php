@@ -48,7 +48,7 @@ class FilesController extends Controller
             $image = $request->file('file_image');
             $extension = $image->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
-            $location = public_path('images/'. $filename);
+            $location = public_path('images/uploads/'. $filename);
             Image::make($image)->save($location);
             
         }
@@ -105,6 +105,13 @@ class FilesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $file = File::find($id);
+        
+
+        if(auth()->user()->id !== $file->uploader_id){
+            return redirect('/teams/'.$file->project_id)->with('error','Unauthorized Page');
+        }
+        $file->delete();
+        return redirect('/teams/'.$file->project_id)->with('success','File Deleted');
     }
 }

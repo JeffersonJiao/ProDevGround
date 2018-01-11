@@ -12,18 +12,65 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default">
-                        <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#home">Project</a></li>
+                        <ul class="nav nav-tabs" >
+                                <li class="active"><a data-toggle="tab" href="#home">Files</a></li>
                                 <li><a data-toggle="tab" href="#menu1">Members</a></li>
-                                <li><a data-toggle="tab" href="#menu2">Files</a></li>
+                                <li><a id="fileTab" data-toggle="tab" href="#menu2">Project</a></li>
                                 <li><a data-toggle="tab" href="#menu3">Upload File</a></li>
                                 <li><a data-toggle="tab" href="#menu4">Discussions</a></li>
                               </ul>
                             
                               <div class="tab-content">
                                 <div id="home" class="tab-pane fade in active">
-                                  <h3>Project Description</h3>
-                                  <p>{!!$project->project_description!!}</p>
+                                <h3>Files</h3>
+                                  <hr>
+                                  @if(count($files)>0)
+                                        <div class="row"> 
+                                        @foreach($files as $file)
+                                        
+                                            <div class="col-sm-12 col-md-6 col-lg-4 img-file">
+                                                <h4>{{$file->title}}</h4>
+                                                <small>Uploaded by: {{$file->uploader_name}}</small>                                                
+                                                <img src="/images/uploads/{{$file->name}}" width="100%" height="auto"/>
+                                                <small>Posted on: {{$file->created_at}}</small><br/>
+                                                <a href="/images/uploads/{{$file->name}}" class="btn btn-primary" download="filename">Download</a>
+                                                @if(Auth::user()->id == $file->uploader_id)
+                                                    {!!Form::open(['action'=>['FilesController@destroy',$file->id],'method' => 'DELETE', 'class'=>'pull-right'])!!}
+                                                        {{Form::submit('Delete',['class'=> 'btn btn-danger'])}}
+                                                    {!!Form::close()!!}
+                                                @endif
+                                                
+                                            </div>
+                        
+                                        @endforeach
+                                        
+
+                                        </div>
+                                  @else
+                                        <p>No image file exist on this project</p>
+                                  @endif
+                                  {{$files->links()}}           
+                                </div>
+                                <div id="menu3" class="tab-pane fade">
+                                  <h3>Upload File</h3>
+                                  <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            {!! Form::open(['action' => 'FilesController@store','method'=>'POST', 'files' => true]) !!}
+                                                <div class="form-group">
+                                                    {{Form::label('title','File Title')}}
+                                                    {{Form::text('title','',['class' => 'form-control','placeholder' => 'Title' ])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{Form::label('file_image','')}}
+                                                    {{Form::file('file_image')}}
+                                                    {{ Form::hidden('uploader_id', Auth::user()->id) }}
+                                                    {{ Form::hidden('project_id', $project->id) }}
+                                                </div>
+                                            {{Form::submit('Upload',['class' => 'btn btn-primary'])}}
+                                            {!! Form::close() !!}
+                                        </div>
+
+                                  </div>
                                 </div>
                                 <div id="menu1" class="tab-pane fade">
                                   <h3>Members</h3>
@@ -70,53 +117,23 @@
                                     </div>
                                 </div>
                                 <div id="menu2" class="tab-pane fade">
-                                  <h3>Files</h3>
-                                  @if(count($files)>0)
-                                        <div class="row">
-                                        @foreach($files as $file)
-                                        
-                                            <div class="col-sm-12 col-md-6 col-lg-4 img-file">
-                                                <h4>{{$file->title}}</h4>
-                                                <img src="/images/{{$file->name}}" width="100%" height="auto"/>
-                                                <a href="/images/{{$file->name}}" class="btn btn-primary" download="filename">Download</a>
-                                            </div>
-                        
-                                        @endforeach
-                                        </div>
-                                  @else
-                                        <p>No image file exist on this project</p>
-                                  @endif
-                                </div>
-                                <div id="menu3" class="tab-pane fade">
-                                  <h3>Upload File</h3>
-                                  <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            {!! Form::open(['action' => 'FilesController@store','method'=>'POST', 'files' => true]) !!}
-                                                <div class="form-group">
-                                                    {{Form::label('title','File Title')}}
-                                                    {{Form::text('title','',['class' => 'form-control','placeholder' => 'Title' ])}}
-                                                </div>
-                                                <div class="form-group">
-                                                    {{Form::label('file_image','')}}
-                                                    {{Form::file('file_image')}}
-                                                    {{ Form::hidden('uploader_id', Auth::user()->id) }}
-                                                    {{ Form::hidden('project_id', $project->id) }}
-                                                </div>
-                                            {{Form::submit('Upload',['class' => 'btn btn-primary'])}}
-                                            {!! Form::close() !!}
-                                        </div>
-
-                                  </div>
+                                    <h3>Project Description</h3>
+                                    <p>{!!$project->project_description!!}</p>  
+                                  
                                 </div>
                                 <div id="menu4" class="tab-pane fade">
                                     <h3>Discussions</h3>
                                     <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
                                 </div>
                               </div>
+                   
                 </div>
+                
+                
             </div>
         </div>    
     </div>
+    
 @endsection
 @section('pagescript')
 <script src="/js/teampage.js"></script>

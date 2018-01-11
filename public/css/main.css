@@ -26,6 +26,10 @@ h6 {
   padding: 15px;
 }
 
+.img-file {
+  padding: 15px;
+}
+
 @media only screen and (max-width: 992px) {
   .img-file:nth-of-type(2n + 1) {
     clear: both;
@@ -38,6 +42,35 @@ h6 {
   }
 }
 
+#logo {
+  position: relative;
+  width: 150px;
+  height: 30px;
+  background: url("/images/logo.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#logo:hover {
+  background: url("/images/logoHover.png");
+  position: relative;
+  width: 150px;
+  height: 30px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.login-cover {
+  background: url("/images/loginCover.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  padding-top: 100px;
+}
+
 span.icon {
   background-color: #0772b9;
   padding: 5px;
@@ -47,8 +80,8 @@ span.icon {
 }
 
 .jumbotron {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(7, 114, 185, 0.4)), to(rgba(111, 203, 220, 0.4))), url(https://source.unsplash.com/dADTfezyAWc);
-  background-image: linear-gradient(rgba(7, 114, 185, 0.4), rgba(111, 203, 220, 0.4)), url(https://source.unsplash.com/dADTfezyAWc);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(111, 203, 220, 0.7)), to(#0772b9)), url("/images/header.png");
+  background-image: linear-gradient(rgba(111, 203, 220, 0.7), #0772b9), url("/images/header.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

@@ -1,6 +1,9 @@
 @extends('layouts.app')
-
+@section('style')
+    <link rel="stylesheet" href="{{asset('css/main.css')}}" />
+@endsection
 @section('content')
+<div class="container-fluid login-cover">
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -73,5 +76,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

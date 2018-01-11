@@ -51,7 +51,8 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'ProDevGround') }}
+                        <!-- {{ config('app.name', 'ProDevGround') }} -->
+                        <div id="logo"></div>
                     </a>
                 </div>
 
