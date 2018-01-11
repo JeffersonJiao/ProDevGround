@@ -72,15 +72,19 @@
                                 <div id="menu2" class="tab-pane fade">
                                   <h3>Files</h3>
                                   @if(count($files)>0)
-                                        @foreach($files as $file)
                                         <div class="row">
-                                            <div class="col-sm-12 col-md-2 col-l-3">
+                                        @foreach($files as $file)
+                                        
+                                            <div class="col-sm-12 col-md-6 col-lg-4 img-file">
                                                 <h4>{{$file->title}}</h4>
                                                 <img src="/images/{{$file->name}}" width="100%" height="auto"/>
+                                                <a href="/images/{{$file->name}}" class="btn btn-primary" download="filename">Download</a>
                                             </div>
-                                        </div>
-                                        
+                        
                                         @endforeach
+                                        </div>
+                                  @else
+                                        <p>No image file exist on this project</p>
                                   @endif
                                 </div>
                                 <div id="menu3" class="tab-pane fade">

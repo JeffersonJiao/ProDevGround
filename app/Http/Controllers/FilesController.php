@@ -41,14 +41,16 @@ class FilesController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'file_image' => 'required'
+            'file_image' => 'required|max:10000|mimes:png,jpg,jpeg,gif'
         ]);
         $file = new File;
         if($request->hasFile('file_image')){
             $image = $request->file('file_image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $extension = $image->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
             $location = public_path('images/'. $filename);
-            Image::make($image)->resize(800,400)->save($location);
+            Image::make($image)->save($location);
+            
         }
         $project_id = $request->input('project_id');
         $uploader_id = $request->input('uploader_id');
