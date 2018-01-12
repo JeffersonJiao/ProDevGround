@@ -71,7 +71,26 @@ class FilesController extends Controller
      */
     public function show($id)
     {
-        //
+        if(Auth::user()){
+            $user_id = auth()->user()->id;
+            $file = DB::table('files')
+                        ->join('users','users.id','=','files.uploader_id')
+                        ->select('files.*','users.name as uploader_name')
+                        ->where('files.id','=',$id)->first();
+            // return $file;
+            $project_id = $file->project_id;
+            $found = Team::where('project_id','=',$project_id)
+                            ->where('user_id',"=",$user_id)->get();
+            if(count($found)>0){
+                return view('files.show')->with('file',$file);
+            }
+            else{
+                return redirect('dashboard/')->with('error','Unauthorized Page');
+            }
+        }
+        else{
+            return redirect('projects/')->with('error','Unauthorized Page');
+        }
     }
 
     /**

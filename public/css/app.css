@@ -8382,13 +8382,7 @@ h6 {
   padding: 15px;
 }
 
-@media only screen and (max-width: 992px) {
-  .img-file:nth-of-type(2n + 1) {
-    clear: both;
-  }
-}
-
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 768px) {
   .img-file:nth-of-type(3n + 1) {
     clear: both;
   }
@@ -8421,6 +8415,43 @@ h6 {
   background-repeat: no-repeat;
   height: 100vh;
   padding-top: 100px;
+}
+
+#confirm.modal {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.file-show-img {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.9);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.file-show-img img {
+  max-width: 1200px;
+  height: auto;
+}
+
+#fileClose {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  background-image: url("/images/close.png");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 span.icon {

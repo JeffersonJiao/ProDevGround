@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('style')
+    <link rel="stylesheet" href="{{asset('css/main.css')}}" />
+@endsection
 @section('content')
 <div class="container">
     <div class="row">
@@ -36,7 +38,7 @@
                                     {!!Form::close()!!}
                                 </td>
                                 <td>
-                                {!!Form::open(['action'=>['RequestController@destroy',$request->id],'method' => 'DELETE'])!!}
+                                {!!Form::open(['action'=>['RequestController@destroy',$request->id],'method' => 'DELETE','class'=>'form-delete' ])!!}
                                     {{Form::submit('Deny',['class'=> 'btn btn-danger'])}}
                                 {!!Form::close()!!}
                                    
@@ -69,7 +71,7 @@
                     <h3>Your Created Projects</h3>
 
                     @if(count($projects)>0)
-                    <table class="table table-striped">
+                    <table class="table table-striped" data-toggle="dataTable" data-form="deleteForm">
                         <tr>
                             <th>Title</th>
                             <th></th>
@@ -80,8 +82,8 @@
                                 <td><a href="/projects/{{$project->id}}">{{$project->project_title}}</a></td>
                                 <td><a href="/projects/{{$project->id}}/edit" class="btn btn-default">Edit</a></td>
                                 <td>
-                                    {!!Form::open(['action'=>['ProjectsController@destroy',$project->id],'method' => 'DELETE', 'class'=>'pull-right'])!!}
-                                        {{Form::submit('Delete',['class'=> 'btn btn-danger'])}}
+                                    {!!Form::open(['action'=>['ProjectsController@destroy',$project->id],'method' => 'DELETE', 'class'=>'pull-right form-delete' ])!!}
+                                        {{Form::submit('Delete',['class'=> 'btn btn-danger','name'=> 'delete_modal'])}}
                                     {!!Form::close()!!}
                                 </td>
                             </tr>
@@ -97,4 +99,7 @@
         </div>
     </div>
 </div>
+@endsection
+@section('pagescript')
+<script src="/js/teampage.js"></script>
 @endsection

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Project;
 use App\Team;
 use App\JoinRequest;
+use App\File;
 use DB;
 class ProjectsController extends Controller
 {
@@ -142,11 +143,23 @@ class ProjectsController extends Controller
     public function destroy($id)
     {
         $project = Project::find($id);
-        
 
         if(auth()->user()->id !== $project->user_id){
             return redirect('/projects')->with('error','Unauthorized Page');
         }
+
+        $files = File::where('project_id','=',$id)->get();
+        $members = Team::where('project_id','=',$id)
+                        ->where('user_id','<>',auth()->user()->id)->get();
+        if(count($members)>0)
+        {
+            return redirect('/dashboard')->with('error','Deletion failed: Projects cannot be deleted if there are remaining members left');
+        }                
+        if(count($files)>0)
+        {
+            return redirect('/dashboard')->with('error','Deletion failed: This project has existing file/files');
+        }
+        
         $project->delete();
         $team_project = DB::table('teams')->where('project_id','=',$id)->delete();
         return redirect('/projects')->with('success','Project Removed');

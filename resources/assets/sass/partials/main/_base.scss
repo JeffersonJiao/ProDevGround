@@ -20,17 +20,12 @@ h1,h2,h3,h4,h5,h6{
 .img-file{
     padding: 15px;
 }
-@media only screen and (max-width:992px) {
-    .img-file:nth-of-type(2n + 1) {
-        clear: both;
-    }
-}
-
-@media only screen and (min-width:992px) {
+@media only screen and (min-width:768px) {
     .img-file:nth-of-type(3n + 1) {
         clear: both;
     }
 }
+
 
 #logo{
     position: relative;
@@ -59,3 +54,31 @@ h1,h2,h3,h4,h5,h6{
     height: 100vh;
     padding-top: 100px;
 }
+
+#confirm.modal{
+    background-color: rgba(0,0,0,.6);
+}
+.file-show-img{
+    position: relative;
+    display: flex;
+    background-color: rgba(0,0,0,.9);
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    img{
+        max-width: 1200px;
+        height: auto;
+    }
+}
+#fileClose{
+    position: absolute;
+    right:10px;
+    top:10px;
+    width: 30px;
+    height: 30px;
+    background-image: url('/images/close.png');
+    background-repeat: repeat;
+    background-position: center;
+    background-size: cover;
+}
+

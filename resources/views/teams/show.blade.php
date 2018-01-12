@@ -28,15 +28,19 @@
                                         <div class="row"> 
                                         @foreach($files as $file)
                                         
-                                            <div class="col-sm-12 col-md-6 col-lg-4 img-file">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 img-file">
                                                 <h4>{{$file->title}}</h4>
-                                                <small>Uploaded by: {{$file->uploader_name}}</small>                                                
-                                                <img src="/images/uploads/{{$file->name}}" width="100%" height="auto"/>
+
+                                                <small>Uploaded by: {{$file->uploader_name}}</small>                
+                                                <hr>                              
+                                                <a href="/files/{{$file->id}}"><img src="/images/uploads/{{$file->name}}" width="100%" height="auto"/></a>
+                                                <hr>
                                                 <small>Posted on: {{$file->created_at}}</small><br/>
-                                                <a href="/images/uploads/{{$file->name}}" class="btn btn-primary" download="filename">Download</a>
+                                                <hr>
+                                                <a href="/images/uploads/{{$file->name}}" class="btn btn-primary" download="filename"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Download</a>
                                                 @if(Auth::user()->id == $file->uploader_id)
-                                                    {!!Form::open(['action'=>['FilesController@destroy',$file->id],'method' => 'DELETE', 'class'=>'pull-right'])!!}
-                                                        {{Form::submit('Delete',['class'=> 'btn btn-danger'])}}
+                                                    {!!Form::open(['action'=>['FilesController@destroy',$file->id],'method' => 'DELETE', 'class'=>'pull-right form-delete'])!!}
+                                                        {{Form::button('<i class="glyphicon glyphicon-remove"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-danger '))}}
                                                     {!!Form::close()!!}
                                                 @endif
                                                 

@@ -18,6 +18,7 @@
         @include('layouts.nav')
         @yield('header')
         @include('inc.messages')
+        @include('inc.modal')
         @yield('content')
         
     </div>
