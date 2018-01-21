@@ -11,8 +11,8 @@
     <div class="jumbotron">
         <div class="container">
             <h1>Welcome to ProDevGround</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis voluptates, facere nostrum fuga magni velit ut praesentium totam? Praesentium, nam.</p>
-            <a class="btn btn-primary btn-lg pull-right" href="/">Get Started</a>
+            <p>Join, Make, Create</p>
+            <a class="btn btn-primary btn-lg pull-right" href="/register">Get Started</a>
         </div>
     </div>
 @endsection

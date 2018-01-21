@@ -65,6 +65,15 @@ h6 {
   padding-top: 100px;
 }
 
+.register-cover {
+  background: url("/images/register.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  padding-top: 100px;
+}
+
 #confirm.modal {
   background-color: rgba(0, 0, 0, 0.6);
 }
@@ -100,6 +109,33 @@ h6 {
   background-repeat: repeat;
   background-position: center;
   background-size: cover;
+}
+
+.about-container div,
+.about-container p {
+  text-align: center;
+}
+
+.about-container img {
+  text-align: center;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.about-container p {
+  font-size: 1.8rem;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 15px;
+}
+
+.about-container div h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+html * {
+  font-family: 'Poppins', sans-serif;
 }
 
 span.icon {

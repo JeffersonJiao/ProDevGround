@@ -64,7 +64,7 @@
                     <ul class="nav navbar-nav">
                       <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/">Home <span class="sr-only">(current)</span></a></li>
                       <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="/about">About</a></li>
-                      <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="/contact">Contact</a></li>
+                      {{--  <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="/contact">Contact</a></li>  --}}
                       <li class="{{ Request::is('projects') ? 'active' : '' }}"><a href="/projects">Projects</a></li>
                       @if(!Auth::guest())
                         <li class="{{ Request::is('teams') ? 'active' : '' }}"><a href="/teams">My Teams</a></li>
